@@ -93,7 +93,8 @@ class Migrationfile extends WireData
 	{
 		if(is_null($this->statics)) {
 			include_once($this->path);
-			$class = new \ReflectionClass($this->classname);
+			$fqcn = class_exists("\\ProcessWire\\{$this->classname}") ? "\\ProcessWire\\{$this->classname}" : $this->classname;
+			$class = new \ReflectionClass($fqcn);
 			$this->statics = $class->getStaticProperties();
 			$type = $class->getParentClass()->getShortName();
 			if($type === 'Migration') $type = 'DefaultMigration';

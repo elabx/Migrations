@@ -284,8 +284,9 @@ class Migrations extends WireData implements Module {
 	private function runAction(Migrationfile $file, $function, $stmt) {
 		include_once($file->path);
 		$classname = $file->classname;
+		$fqcn = class_exists("\\ProcessWire\\{$classname}") ? "\\ProcessWire\\{$classname}" : $classname;
 
-		$migration = new $classname();
+		$migration = new $fqcn();
 		$migration->$function();
 
 		$stmt->bindParam(':class', $classname);
