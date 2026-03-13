@@ -30,7 +30,7 @@ class InstallCommand extends Command
 		$this->wire = $wire;
 	}
 
-	protected function configure ()
+	protected function configure (): void
 	{
 		$this
 			->setName('install')
@@ -39,7 +39,7 @@ class InstallCommand extends Command
 		;
 	}
 
-	protected function execute (InputInterface $input, OutputInterface $output)
+	protected function execute (InputInterface $input, OutputInterface $output): int
 	{
 		$io = new CliStyles($input, $output);
 		$modules = $this->wire->wire('modules');
@@ -55,6 +55,8 @@ class InstallCommand extends Command
 				return 1;
 			}
 		}
+
+		return 0;
 	}
 
 }

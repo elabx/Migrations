@@ -22,7 +22,7 @@ class CreateCommand extends Command
 
 	const TEMPLATE_TYPE = 'default';
 
-	protected function configure ()
+	protected function configure (): void
 	{
 		$configuration = $this
 			->setName('create' . (static::TEMPLATE_TYPE === 'default' ? '' : ':' . static::TEMPLATE_TYPE))
@@ -55,9 +55,9 @@ class CreateCommand extends Command
 	/**
 	 * @param InputInterface  $input
 	 * @param OutputInterface $output
-	 * @return void
+	 * @return int
 	 */
-	protected function execute (InputInterface $input, OutputInterface $output)
+	protected function execute (InputInterface $input, OutputInterface $output): int
 	{
 		if(!$this->isEnabled())
 			throw new RuntimeException('Migrations Module not installed.');
@@ -68,11 +68,12 @@ class CreateCommand extends Command
 		try{
 			$file = $this->migrations->createNew($this->getTemplateType($input), $options);
 			$io->success("Created new migration " . basename($file));
-		} catch (\WireException $e){
-			$io->error($e->getMessage());
 		} catch (\ProcessWire\WireException $e){
 			$io->error($e->getMessage());
+			return 1;
 		}
+
+		return 0;
 	}
 
 	/**

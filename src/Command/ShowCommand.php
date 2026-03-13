@@ -20,7 +20,7 @@ class ShowCommand extends Command
 	use MigrationsModule;
 	use MigrationsTable;
 
-	protected function configure ()
+	protected function configure (): void
 	{
 		$this
 			->setName('show')
@@ -43,7 +43,7 @@ class ShowCommand extends Command
 		;
 	}
 
-	protected function execute (InputInterface $input, OutputInterface $output)
+	protected function execute (InputInterface $input, OutputInterface $output): int
 	{
 		$io = new CliStyles($input, $output);
 		$files = $this->migrations->getMigrations();
@@ -58,5 +58,7 @@ class ShowCommand extends Command
 			$files->find("migrated=1")->count
 		));
 		$this->renderTable($io, $files);
+
+		return 0;
 	}
 }

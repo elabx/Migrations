@@ -21,7 +21,7 @@ class MigrateCommand extends Command
 	use MigrationsModule;
 	use MigrationsTable;
 
-	protected function configure ()
+	protected function configure (): void
 	{
 		$this
 			->setName('run')
@@ -38,7 +38,7 @@ class MigrateCommand extends Command
 		;
 	}
 
-	protected function execute (InputInterface $input, OutputInterface $output)
+	protected function execute (InputInterface $input, OutputInterface $output): int
 	{
 		$io = new CliStyles($input, $output);
 		$io->header();
@@ -48,8 +48,10 @@ class MigrateCommand extends Command
 			$input->hasParameterOption(['-l', '--latest'])
 		);
 
-		if(!$files->count)
-			return $io->writeln('Nothing to migrate.');
+		if(!$files->count) {
+			$io->writeln('Nothing to migrate.');
+			return 0;
+		}
 
 		$io->writeln(sprintf('%d files to migrate. Starting…', $files->count));
 
@@ -62,5 +64,7 @@ class MigrateCommand extends Command
 		}
 
 		$this->renderTable($io, $files);
+
+		return 0;
 	}
 }

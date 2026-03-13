@@ -20,7 +20,7 @@ class RollbackCommand extends Command
 	use MigrationsModule;
 	use MigrationsTable;
 
-	protected function configure ()
+	protected function configure (): void
 	{
 		$this
 			->setName('rollback')
@@ -33,16 +33,18 @@ class RollbackCommand extends Command
 	/**
 	 * @param InputInterface  $input
 	 * @param OutputInterface $output
-	 * @return int|null|void
+	 * @return int
 	 */
-	protected function execute (InputInterface $input, OutputInterface $output)
+	protected function execute (InputInterface $input, OutputInterface $output): int
 	{
 		$io = new CliStyles($input, $output);
 		$io->header();
 		$files = $this->migrations->selectRollbackMigrations($input->getArgument('what'));
 
-		if(!$files->count)
-			return $io->writeln('Nothing to rollback.');
+		if(!$files->count) {
+			$io->writeln('Nothing to rollback.');
+			return 0;
+		}
 
 		$io->writeln(sprintf('%d files to rollback. Starting…', $files->count));
 
@@ -55,5 +57,7 @@ class RollbackCommand extends Command
 		}
 
 		$this->renderTable($io, $files);
+
+		return 0;
 	}
 }
