@@ -22,7 +22,7 @@ trait MigrationsModule
 	/**
 	 * @return bool
 	 */
-	public function isEnabled ()
+	public function isEnabled (): bool
 	{
 		return $this->migrations instanceof Migrations;
 	}
