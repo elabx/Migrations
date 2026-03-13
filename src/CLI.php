@@ -18,7 +18,7 @@ class CLI
 {
 	public static function run ($wire)
 	{
-		$application = new Application('Migrations CLI', '0.3.1');
+		$application = new Application('Migrations CLI', '0.4.0');
 
 		$migrations = $wire->modules->get('Migrations');
 
