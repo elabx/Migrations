@@ -33,17 +33,24 @@ class CliStyles extends SymfonyStyle
 		parent::__construct($input, $output);
 	}
 
-	public function table (array $headers, array $rows)
+	public function table (array $headers, array $rows): void
 	{
 		$style = clone Table::getStyleDefinition('default');
 
 		$style->setCellHeaderFormat('<info>%s</info>');
-		$char = sprintf('<muted>%s</muted>', $style->getHorizontalBorderChar());
-		$style->setHorizontalBorderChar($char);
-		$char = sprintf('<muted>%s</muted>', $style->getCrossingChar());
-		$style->setCrossingChar($char);
-		$char = sprintf('<muted>%s</muted>', $style->getVerticalBorderChar());
-		$style->setVerticalBorderChar($char);
+		$style->setHorizontalBorderChars(sprintf('<muted>%s</muted>', '-'));
+		$style->setCrossingChars(
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+'),
+			sprintf('<muted>%s</muted>', '+')
+		);
+		$style->setVerticalBorderChars(sprintf('<muted>%s</muted>', '|'));
 
 		$table = new Table($this);
 		$table->setHeaders($headers);
