@@ -132,7 +132,7 @@ class FullCliColors implements OutputFormatterStyleInterface
 	 *
 	 * @throws InvalidArgumentException When the color name isn't defined
 	 */
-	public function setForeground($color = null)
+	public function setForeground(?string $color = null): void
 	{
 		if (null === $color) {
 			$this->foreground = null;
@@ -155,7 +155,7 @@ class FullCliColors implements OutputFormatterStyleInterface
 	 *
 	 * @throws InvalidArgumentException When the color name isn't defined
 	 */
-	public function setBackground($color = null)
+	public function setBackground(?string $color = null): void
 	{
 		if (null === $color) {
 			$this->background = null;
@@ -178,7 +178,7 @@ class FullCliColors implements OutputFormatterStyleInterface
 	 *
 	 * @throws InvalidArgumentException When the option name isn't defined
 	 */
-	public function setOption($option)
+	public function setOption(string $option): void
 	{
 		if (!isset(static::$availableOptions[$option])) {
 			throw new InvalidArgumentException(sprintf(
@@ -199,7 +199,7 @@ class FullCliColors implements OutputFormatterStyleInterface
 	 *
 	 * @throws InvalidArgumentException When the option name isn't defined
 	 */
-	public function unsetOption($option)
+	public function unsetOption(string $option): void
 	{
 		if (!isset(static::$availableOptions[$option])) {
 			throw new InvalidArgumentException(sprintf(
@@ -219,7 +219,7 @@ class FullCliColors implements OutputFormatterStyleInterface
 	 *
 	 * @param array $options
 	 */
-	public function setOptions(array $options)
+	public function setOptions(array $options): void
 	{
 		$this->options = array();
 		foreach ($options as $option) {
@@ -234,7 +234,7 @@ class FullCliColors implements OutputFormatterStyleInterface
 	 *
 	 * @return string
 	 */
-	public function apply($text)
+	public function apply(string $text): string
 	{
 		$setCodes = array();
 		$unsetCodes = array();
