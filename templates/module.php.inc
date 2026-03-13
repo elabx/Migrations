@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 class {classname} extends ModuleMigration {
 
 	public static $description = "{description}";

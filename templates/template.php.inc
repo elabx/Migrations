@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 class {classname} extends TemplateMigration {
 
 	public static $description = "{description}";

@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 abstract class AccessMigration extends Migration{
 
 	public static $description;

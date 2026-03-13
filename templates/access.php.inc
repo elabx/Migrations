@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 class {classname} extends AccessMigration {
 
 	public static $description = "{description}";

@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 class MigrationfilesArray extends WireArray {
 	/**
 	 * @return Migrationfile

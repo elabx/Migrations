@@ -8,9 +8,8 @@
 
 namespace ProcessWire\Migrations\Command;
 
-
-use Migrationfile;
-use MigrationfilesArray;
+use ProcessWire\Migrationfile;
+use ProcessWire\MigrationfilesArray;
 use Symfony\Component\Console\Style\StyleInterface;
 
 trait MigrationsTable

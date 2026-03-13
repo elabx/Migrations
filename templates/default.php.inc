@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 class {classname} extends Migration {
 
 	public static $description = "{description}";

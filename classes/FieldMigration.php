@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 abstract class FieldMigration extends Migration{
 
 	public static $description;

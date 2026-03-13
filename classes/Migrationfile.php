@@ -1,5 +1,7 @@
 <?php
 
+namespace ProcessWire;
+
 /**
  * Class Migrationfile
  *
@@ -29,10 +31,10 @@ class Migrationfile extends WireData
 	}
 
 	/**
-	 * @param SplFileInfo $fileInfo
+	 * @param \SplFileInfo $fileInfo
 	 * @return static
 	 */
-	public static function fromFileInfo(SplFileInfo $fileInfo)
+	public static function fromFileInfo(\SplFileInfo $fileInfo)
 	{
 		return (new static())
 			->setPath($fileInfo->getPathname());
@@ -91,7 +93,7 @@ class Migrationfile extends WireData
 	{
 		if(is_null($this->statics)) {
 			include_once($this->path);
-			$class = new ReflectionClass($this->classname);
+			$class = new \ReflectionClass($this->classname);
 			$this->statics = $class->getStaticProperties();
 			$type = $class->getParentClass()->getShortName();
 			if($type === 'Migration') $type = 'DefaultMigration';

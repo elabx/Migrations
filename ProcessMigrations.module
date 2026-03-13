@@ -1,17 +1,20 @@
 <?php
+
+namespace ProcessWire;
+
 /**
  * Migrations
- * 
- * 
+ *
+ *
  * @author Benjamin Milde
- * 
- * ProcessWire 2.x
+ *
+ * ProcessWire 3.x
  * Copyright (C) 2011 by Ryan Cramer
  * Licensed under GNU/GPL v2, see LICENSE.TXT
- * 
+ *
  * http://www.processwire.com
  * http://www.ryancramer.com
- * 
+ *
  */
 
 class ProcessMigrations extends Process {
@@ -124,7 +127,7 @@ class ProcessMigrations extends Process {
 		$file = $this->evaluateID();
 		try{
 			$this->m()->migrate($file);
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			$this->message("Could not migrate $file. Got error " . get_class($e) . " with " . $e->getMessage());
 			return false;
 		}
@@ -135,7 +138,7 @@ class ProcessMigrations extends Process {
 		$file = $this->evaluateID();
 		try{
 			$this->m()->rollback($file);
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			$this->message("Could not rollback $file. Got error " . get_class($e) . " with " . $e->getMessage());
 			return false;
 		}
