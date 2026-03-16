@@ -26,6 +26,9 @@
   "autoload": {
     "psr-4": {
       "ProcessWire\\Migrations\\": "src/"
-    }
+    },
+    "classmap": [
+      "classes/"
+    ]
   }
 }
