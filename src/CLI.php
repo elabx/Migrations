@@ -21,6 +21,7 @@ class CLI
 		$application = new Application('Migrations CLI', '0.4.0');
 
 		$migrations = $wire->modules->get('Migrations');
+		$migrations->init();
 
 		$commandClasses = [
 			CreateCommand::class,
